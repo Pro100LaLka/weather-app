@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Weather app</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/images/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,600;1,9..40,600;0,9..40,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="module" src="scripts/main.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Weather Logo" />
+        <h1 class="title">Weather</h1>
+      </div>
+      <details class="units">
+        <summary>
+          <img
+            class="settings-icon"
+            src="assets/images/icon-units.svg"
+            alt=""
+          />
+          <span>Units</span>
+          <img
+            class="dropdown-icon"
+            src="assets/images/icon-dropdown.svg"
+            alt=""
+          />
+        </summary>
+        <div class="units__dropdown">
+          <button class="units__switch">
+            <span class="to-imperial">Switch to Imperial</span>
+            <span class="to-metric">Switch to Metric</span>
+          </button>
+          <hr class="units__hr" />
+          <fieldset class="units__temperature">
+            <legend>Temperature</legend>
+            <label>
+              Celsius (&deg;C)
+              <input
+                class="sr-only"
+                data-system="metric"
+                type="radio"
+                name="temperature"
+                value="celsius"
+                checked
+              />
+              <img src="assets/images/icon-checkmark.svg" alt="" />
+            </label>
+            <label>
+              Fahrenheit (&deg;F)
+              <input
+                class="sr-only"
+                data-system="imperial"
+                type="radio"
+                name="temperature"
+                value="fahrenheit"
+              />
+              <img src="assets/images/icon-checkmark.svg" alt="" />
+            </label>
+          </fieldset>
+          <hr class="units__hr" />
+          <fieldset class="units__wind">
+            <legend>Wind Speed</legend>
+            <label>
+              km/h
+              <input
+                class="sr-only"
+                data-system="metric"
+                type="radio"
+                name="wind"
+                value="kmh"
+                checked
+              />
+              <img src="assets/images/icon-checkmark.svg" alt="" />
+            </label>
+            <label>
+              mph
+              <input
+                class="sr-only"
+                data-system="imperial"
+                type="radio"
+                name="wind"
+                value="mph"
+              />
+              <img src="assets/images/icon-checkmark.svg" alt="" />
+            </label>
+          </fieldset>
+          <hr class="units__hr" />
+          <fieldset class="units__precipitation">
+            <legend>Precipitation</legend>
+            <label>
+              Millimeters (mm)
+              <input
+                class="sr-only"
+                data-system="metric"
+                type="radio"
+                name="precipitation"
+                value="mm"
+                checked
+              />
+              <img src="assets/images/icon-checkmark.svg" alt="" />
+            </label>
+            <label>
+              Inches (in)
+              <input
+                class="sr-only"
+                data-system="imperial"
+                type="radio"
+                name="precipitation"
+                value="inch"
+              />
+              <img src="assets/images/icon-checkmark.svg" alt="" />
+            </label>
+          </fieldset>
+        </div>
+      </details>
+      <div class="search">
+        <input
+          type="text"
+          class="search__input"
+          placeholder="Search for a place..."
+          autocomplete="off"
+          aria-label="Search for a place"
+          aria-expanded="false"
+          role="combobox"
+        />
+        <ul class="search__results" role="listbox"></ul>
+        <ul class="recent-searches"></ul>
+      </div>
+    </header>
+    <main>
+      <div class="forecast" data-status="idle">
+        <div class="error-state">
+          <div class="error-state__icon">
+            <img src="assets/images/icon-error.svg" alt="" />
+          </div>
+          <h2 class="error-state__title">Something went wrong</h2>
+          <p class="error-state__text">
+            We couldn't connect to the server. Please try again.
+          </p>
+          <button class="retry-btn">
+            <img src="assets/images/icon-retry.svg" alt="" />
+            <span>Retry</span>
+          </button>
+        </div>
+
+        <section class="current">
+          <div class="current__main-section">
+            <!-- <div class="loading-state" role="status">
+              <div class="loading-animation" aria-hidden>
+                <div class="loading-animation__circle"></div>
+                <div class="loading-animation__circle"></div>
+                <div class="loading-animation__circle"></div>
+              </div>
+              <p class="loading-text">Loading...</p>
+            </div> -->
+
+            <!-- <h2 class="location"></h2>
+            <time class="date" datetime=""></time>
+            <div class="current__weather-container">
+              <div class="weather-icon"><img src="" alt=""></div>
+              <p class="temperature"></p>
+            </div>
+            <p class="apparent"></p> -->
+          </div>
+          <div class="current__mini-sections">
+            <!-- <div class="wind">
+              <h3 class="mini-section-title">Wind</h3>
+              <p class="mini-section-value">&dash;</p>
+            </div>
+            <div class="precipitation">
+              <h3 class="mini-section-title">Precipitation</h3>
+              <p class="mini-section-value">&dash;</p>
+            </div>
+            <div class="humidity">
+              <h3 class="mini-section-title">Humidity</h3>
+              <p class="mini-section-value">&dash;</p>
+            </div>
+            <div class="pressure">
+              <h3 class="mini-section-title">Pressure</h3>
+              <p class="mini-section-value">&dash;</p>
+            </div> -->
+          </div>
+        </section>
+        <section class="hourly">
+          <h2 class="hourly__title">Hourly forecast</h2>
+          <ul class="hourly__list">
+            <!-- <li class="hourly__card">
+              <div class="hourly__weather-icon"></div>
+              <h3 class="hourly__hour"></h3>
+              <p class="hourly__temperature"></p>
+            </li> -->
+          </ul>
+        </section>
+        <section class="daily">
+          <h2 class="daily__title">Daily forecast</h2>
+          <ul class="daily__list">
+            <!-- <li class="daily__card">
+              <div class="daily__date-container">
+                <time datetime="" class="daily__date"></time>
+                <h3 class="daily__day"></h3>
+              </div>
+              <div class="daily__weather-icon"></div>
+              <p class="daily__temperature daily__temperature--max"></p>
+              <p class="daily__temperature daily__temperature--min"></p>
+            </li> -->
+          </ul>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
