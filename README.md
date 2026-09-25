@@ -1,4 +1,4 @@
-HTML + CSS + JS. Weather App. The project I'm most proud of so far. My skills shown in this project:
+HTML + CSS + JS. Weather App. The project I'm most proud of in vanilla JS so far. My skills shown in this project:
 
 - JavaScript architecture split into ES modules (state → render, single source of truth; separate data, render and helper modules)
 - Async/await with multiple chained APIs and error handling (IP geolocation → forecast, city geocoding)
